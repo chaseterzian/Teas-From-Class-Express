@@ -10,7 +10,7 @@ var connString = "postgres://localhost/tea_express_raw_sql";
 
 //connect to postgres with a new connection
 var client = new pg.Client(connString);
-client.connect(function() {
+client.connect(function(err) {
   if (err) {
     return console.error('could not connect to postgres', err);
   }
