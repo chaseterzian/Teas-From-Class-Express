@@ -30,3 +30,7 @@ tea_express_raw_sql=#
 
 //sort of directions on how to get to that database
 //added a bunch of shit
+//get it loaded into app....ready but lot pulled in?
+
+//server start
+DEBUG=tea-express-raw-sql:* npm start
