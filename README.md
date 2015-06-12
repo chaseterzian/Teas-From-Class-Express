@@ -1,3 +1,5 @@
+psql -d postgres (thing with the tables)
+
 express tea-express-raw-sql
 tea-express-raw-sql
 git init
@@ -34,3 +36,5 @@ tea_express_raw_sql=#
 
 //server start
 DEBUG=tea-express-raw-sql:* npm start
+
+//make a migration
