@@ -4,9 +4,28 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var pg = require('pg');
+
+var connString = "postgres://localhost/tea_express_raw_sql";
+
+//connect to postgres with a new connection
+var client = new pg.Client(connString);
+client.connect(function() {
+  if (err) {
+    return console.error('could not connect to postgres', err);
+  }
+  client.query('SELECT NOW() AS "theTime"', function(err, result) {
+    if (err) {
+      return console.error('error running query', err);
+    }
+    console.log("Postgres is totally hooking it up:", result.rows[0].theTime);
+    client.end;
+  });
+});
+
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var teas = require('./routes/teas');
 
 var app = express();
 
@@ -23,7 +42,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/teas', teas);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
